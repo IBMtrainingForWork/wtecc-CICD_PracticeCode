@@ -1,6 +1,6 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
-metadata:  
+metadata:
   name: cd-pipeline
 spec:
   params:
@@ -25,7 +25,6 @@ spec:
         value: "Calling Flake8 linter..."
       runAfter:
         - clone
-
     - name: tests
       taskRef:
         name: echo
@@ -34,7 +33,6 @@ spec:
         value: "Running unit tests with PyUnit..."
       runAfter:
         - lint
-
     - name: build
       taskRef:
         name: echo
@@ -43,7 +41,6 @@ spec:
         value: "Building image for $(params.repo-url) ..."
       runAfter:
         - tests
-
     - name: deploy
       taskRef:
         name: echo
